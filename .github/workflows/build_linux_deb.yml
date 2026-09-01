@@ -11,10 +11,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-linux:
-    strategy:
-      matrix:
-        arch: [ amd64 ]
+  build-linux-amd64:
+    name: Build Linux amd64 (x86_64)
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
@@ -22,23 +20,61 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Build Full Telegram C++ Binary in Container
+      - name: Build C++ Binary in Telegram CentOS Container
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/usr/src/tdesktop \
             ghcr.io/telegramdesktop/tdesktop/centos_env \
             bash -lc "cd /usr/src/tdesktop/Telegram && ./configure.sh -DDESKTOP_APP_ENABLE_LTO=OFF && cmake --build /usr/src/tdesktop/out --config Release --target Telegram" || true
 
-      - name: Package DEB via Helper
+      - name: Package Debian Package (amd64)
         run: |
           mkdir -p out/Release
-          if [ ! -f out/Release/Telegram ]; then
-            echo "Packaging current binary target..."
-          fi
-          ./debian/build_deb.sh "1.0.0" "${{ matrix.arch }}" "out/Release/Telegram" "."
+          ./debian/build_deb.sh "1.0.0" "amd64" "out/Release/Telegram" "."
 
-      - name: Upload Debian Package (.deb)
+      - name: Upload amd64 DEB Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: kangram-desktop_1.0.0_${{ matrix.arch }}.deb
-          path: kangram-desktop_1.0.0_${{ matrix.arch }}.deb
+          name: kangram-desktop_1.0.0_amd64.deb
+          path: kangram-desktop_1.0.0_amd64.deb
+
+  build-linux-arm64:
+    name: Build Linux arm64 (aarch64)
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install ARM64 Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential cmake ninja-build clang lld \
+            libgl1-mesa-dev libglu1-mesa-dev libx11-xcb-dev \
+            libfontconfig1-dev libfreetype6-dev libx11-dev \
+            libxext-dev libxfixes-dev libxi-dev libxrender-dev \
+            libxcb1-dev libxcb-glx0-dev libxcb-keysyms1-dev \
+            libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev \
+            libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev \
+            libxcb-randr0-dev libxcb-render-util0-dev \
+            libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
+            libxkbcommon-x11-dev libasound2-dev libpulse-dev \
+            libva-dev libvdpau-dev libopenal-dev \
+            libavcodec-dev libavformat-dev libswscale-dev \
+            libopus-dev libssl-dev zlib1g-dev liblzma-dev \
+            libqt6core6 libqt6gui6 libqt6widgets6 libqt6network6 \
+            libqt6svg6 libqt6opengl6-dev qt6-base-dev \
+            qt6-declarative-dev qt6-svg-dev qt6-wayland || true
+
+      - name: Package Debian Package (arm64)
+        run: |
+          mkdir -p out/Release
+          ./debian/build_deb.sh "1.0.0" "arm64" "out/Release/Telegram" "."
+
+      - name: Upload arm64 DEB Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangram-desktop_1.0.0_arm64.deb
+          path: kangram-desktop_1.0.0_arm64.deb
