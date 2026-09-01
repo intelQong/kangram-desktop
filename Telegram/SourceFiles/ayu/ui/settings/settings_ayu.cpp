@@ -676,6 +676,23 @@ void BuildOther(SectionBuilder &builder, AyuSectionBuilder &ayu) {
 		.getter = &AyuSettings::disableAds,
 		.setter = &AyuSettings::setDisableAds,
 	});
+
+	builder.addSubsectionTitle(rpl::single(QString("Security & Duress (KABOOM)")));
+	builder.addButton({
+		.id = u"kangram/duress_pin"_q,
+		.title = rpl::single(QString("Duress Passcode / KABOOM Wipe")),
+		.icon = { &st::menuIconPermissions },
+		.label = AyuSettings::getInstance().duressPasscodeValue() | rpl::map([](const QString &val) {
+			return val.isEmpty() ? QString("Enabled on 10 bad tries") : QString("Custom PIN Active");
+		}),
+		.onClick = [controller = builder.controller()] {
+			controller->show(Ui::MakeConfirmBox({
+				.text = rpl::single(QString("Kangram Duress & Panic Protection is active. Entering your configured duress code or exceeding 10 failed passcode attempts on the lock screen will immediately wipe all session data and exit (KABOOM).")),
+				.confirmed = [] {},
+				.confirmText = tr::lng_box_ok(),
+			}));
+		},
+	});
 }
 
 const auto kMeta = BuildHelper({

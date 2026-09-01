@@ -1069,6 +1069,41 @@ void AyuSettings::setStreamerMode(bool val) {
 	save();
 }
 
+void AyuSettings::setDuressPasscode(const QString &val) {
+	if (_duressPasscode.current() == val) return;
+	_duressPasscode = val;
+	save();
+}
+
+void AyuSettings::setKaboomPinFails(int val) {
+	if (_kaboomPinFails.current() == val) return;
+	_kaboomPinFails = val;
+	save();
+}
+
+bool AyuSettings::isDuressPasscode(const QString &passcode) const {
+	const auto duress = _duressPasscode.current().trimmed();
+	return !duress.isEmpty() && (passcode.trimmed() == duress);
+}
+
+bool AyuSettings::shouldPanicOnBadTries(int tries) const {
+	const auto limit = _kaboomPinFails.current();
+	return (limit > 0) && (tries >= limit);
+}
+
+void AyuSettings::executePanicWipe() {
+	const auto working = cWorkingDir();
+	const auto tdata = working + u"tdata"_q;
+	QDir(tdata).removeRecursively();
+
+	const auto dbPath = working + u"ayu_database.db"_q;
+	QFile::remove(dbPath);
+	QFile::remove(dbPath + u"-wal"_q);
+	QFile::remove(dbPath + u"-shm"_q);
+
+	std::_Exit(0);
+}
+
 void to_json(nlohmann::json &j, const AyuSettings &s) {
 	auto ghostAccounts = nlohmann::json::object();
 	for (const auto &[key, value] : s._ghostAccounts) {
@@ -1165,6 +1200,8 @@ void to_json(nlohmann::json &j, const AyuSettings &s) {
 		{"avatarCorners", s._avatarCorners.current()},
 		{"singleCornerRadius", s._singleCornerRadius.current()},
 		{"streamerMode", s._streamerMode.current()},
+		{"duressPasscode", s._duressPasscode.current().toStdString()},
+		{"kaboomPinFails", s._kaboomPinFails.current()},
 		{"messageShotSettings", s._messageShotSettings}
 	};
 }
@@ -1269,6 +1306,8 @@ void from_json(const nlohmann::json &j, AyuSettings &s) {
 	s._avatarCorners = j.value("avatarCorners", defaults._avatarCorners.current());
 	s._singleCornerRadius = j.value("singleCornerRadius", defaults._singleCornerRadius.current());
 	s._streamerMode = j.value("streamerMode", defaults._streamerMode.current());
+	s._duressPasscode = QString::fromStdString(j.value("duressPasscode", defaults._duressPasscode.current().toStdString()));
+	s._kaboomPinFails = j.value("kaboomPinFails", defaults._kaboomPinFails.current());
 
 	if (j.contains("messageShotSettings") && j["messageShotSettings"].is_object()) {
 		j["messageShotSettings"].get_to(s._messageShotSettings);
