@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Name=Kangram Desktop
+Comment=Privacy and control oriented Telegram client
+GenericName=Chat Client
+Exec=kangram %u
+Icon=kangram
+Terminal=false
+Type=Application
+Categories=Network;InstantMessaging;Chat;
+MimeType=x-scheme-handler/tg;x-scheme-handler/tonsite;
+Keywords=tg;chat;im;messaging;messenger;telegram;kangram;
+Actions=Quit;
+
+[Desktop Action Quit]
+Exec=kangram -quit
+Name=Quit Kangram
+Icon=application-exit

@@ -1,0 +1,15 @@
+Source: kangram-desktop
+Section: net
+Priority: optional
+Maintainer: Md Mahmudul Hoque Khan <117527321+intelQong@users.noreply.github.com>
+Build-Depends: debhelper-compat (= 13), cmake, ninja-build
+Standards-Version: 4.6.2
+Homepage: https://github.com/intelQong/kangram-desktop
+
+Package: kangram-desktop
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Kangram Desktop Messaging Client
+ Kangram Desktop is a privacy and control oriented desktop client
+ for Telegram with anti-recall message history, ghost mode, restriction
+ bypasses, duress wipe, and multi-account support.
