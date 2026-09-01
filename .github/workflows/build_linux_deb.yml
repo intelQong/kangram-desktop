@@ -20,9 +20,12 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Patch Protobuf CMake configuration
+      - name: Disable unused CLD3 CMake dependency
         run: |
-          sed -i 's/find_package(protobuf REQUIRED CONFIG)/find_package(protobuf CONFIG)\n    if (NOT protobuf_FOUND)\n        find_package(Protobuf REQUIRED)\n        set(protoc_executable ${Protobuf_PROTOC_EXECUTABLE})\n        set(protobuf_lib ${Protobuf_LIBRARIES})\n    else()\n        set(protoc_executable protobuf::protoc)\n        set(protobuf_lib protobuf::libprotobuf-lite)\n    endif()/' cmake/external/cld3/CMakeLists.txt
+          cat << 'EOF' > cmake/external/cld3/CMakeLists.txt
+          add_library(external_cld3 INTERFACE IMPORTED GLOBAL)
+          add_library(desktop-app::external_cld3 ALIAS external_cld3)
+          EOF
 
       - name: Build C++ Binary in Telegram CentOS Container
         run: |
