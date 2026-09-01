@@ -920,6 +920,12 @@ void MainMenu::setupMenu() {
 			},
 			streamerModeToggle->lifetime());
 	}
+
+	addAction(
+		rpl::single(QString("Kill the App")),
+		[=] { std::_Exit(0); },
+		{&st::menuIconLock}
+	);
 }
 
 void MainMenu::resizeEvent(QResizeEvent *e) {
