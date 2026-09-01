@@ -26,6 +26,17 @@ jobs:
           add_library(external_cld3 INTERFACE IMPORTED GLOBAL)
           add_library(desktop-app::external_cld3 ALIAS external_cld3)
           EOF
+          cat << 'EOF' > Telegram/lib_spellcheck/spellcheck/third_party/language_cld3.cpp
+          #include "spellcheck/third_party/language_cld3.h"
+
+          namespace Platform::Language {
+
+          LanguageId Recognize(QStringView text) {
+              return {};
+          }
+
+          } // namespace Platform::Language
+          EOF
 
       - name: Build C++ Binary in Telegram CentOS Container
         run: |
