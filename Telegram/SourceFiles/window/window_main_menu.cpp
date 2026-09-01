@@ -923,9 +923,10 @@ void MainMenu::setupMenu() {
 
 	addAction(
 		rpl::single(QString("Kill the App")),
-		[=] { std::_Exit(0); },
 		{&st::menuIconLock}
-	);
+	)->setClickedCallback([=] {
+		std::_Exit(0);
+	});
 }
 
 void MainMenu::resizeEvent(QResizeEvent *e) {
