@@ -28,7 +28,7 @@ jobs:
             -u 0:0 \
             -v ${{ github.workspace }}:/usr/src/tdesktop \
             ghcr.io/telegramdesktop/tdesktop/centos_env \
-            bash -lc "cd /usr/src/tdesktop/Telegram && ./configure.sh -DDESKTOP_APP_ENABLE_LTO=OFF && cmake --build /usr/src/tdesktop/out --config Release --target Telegram"
+            bash -lc "cd /usr/src/tdesktop/Telegram && ./configure.sh -DDESKTOP_APP_ENABLE_LTO=OFF -DTDESKTOP_API_ID=2040 -DTDESKTOP_API_HASH=b18441a1ff607e10a989891a5462e627 && cmake --build /usr/src/tdesktop/out --config Release --target Telegram"
 
       - name: Package Debian Package (amd64)
         run: |
