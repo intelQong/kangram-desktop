@@ -20,6 +20,10 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Patch Protobuf CMake configuration
+        run: |
+          sed -i 's/find_package(protobuf REQUIRED CONFIG)/find_package(protobuf CONFIG)\n    if (NOT protobuf_FOUND)\n        find_package(Protobuf REQUIRED)\n        set(protoc_executable ${Protobuf_PROTOC_EXECUTABLE})\n        set(protobuf_lib ${Protobuf_LIBRARIES})\n    else()\n        set(protoc_executable protobuf::protoc)\n        set(protobuf_lib protobuf::libprotobuf-lite)\n    endif()/' cmake/external/cld3/CMakeLists.txt
+
       - name: Build C++ Binary in Telegram CentOS Container
         run: |
           mkdir -p out
