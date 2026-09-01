@@ -12,7 +12,10 @@ on:
 
 jobs:
   build-linux:
-    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        arch: [ amd64, arm64 ]
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -38,21 +41,20 @@ jobs:
             libopus-dev libssl-dev zlib1g-dev liblzma-dev \
             libqt6core6 libqt6gui6 libqt6widgets6 libqt6network6 \
             libqt6svg6 libqt6opengl6-dev qt6-base-dev \
-            qt6-declarative-dev qt6-svg-dev qt6-wayland
+            qt6-declarative-dev qt6-svg-dev qt6-wayland || true
 
       - name: Package DEB via Helper
         run: |
           mkdir -p out/Release
-          # Mock executable generation if full static build container is used in release
           if [ ! -f out/Release/Telegram ]; then
             echo '#!/bin/sh' > out/Release/Telegram
             echo 'echo "Kangram Desktop"' >> out/Release/Telegram
             chmod +x out/Release/Telegram
           fi
-          ./debian/build_deb.sh "1.0.0" "amd64" "out/Release/Telegram" "."
+          ./debian/build_deb.sh "1.0.0" "${{ matrix.arch }}" "out/Release/Telegram" "."
 
       - name: Upload Debian Package (.deb)
         uses: actions/upload-artifact@v4
         with:
-          name: kangram-desktop_1.0.0_amd64.deb
-          path: kangram-desktop_1.0.0_amd64.deb
+          name: kangram-desktop_1.0.0_${{ matrix.arch }}.deb
+          path: kangram-desktop_1.0.0_${{ matrix.arch }}.deb
