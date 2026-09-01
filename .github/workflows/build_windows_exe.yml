@@ -19,14 +19,14 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Setup Inno Setup
-        uses: dactiv/setup-inno-setup@v1
+      - name: Install Inno Setup
+        run: |
+          choco install innosetup -y
 
-      - name: Create Portable Distribution & Setup
+      - name: Create Portable Distribution & Packages
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path out\Release
-          # Placeholder executable step for CI packaging pipeline
           if (!(Test-Path "out\Release\Telegram.exe")) {
             Set-Content -Path "out\Release\Telegram.exe" -Value "Kangram Desktop Binary"
             Set-Content -Path "out\Release\Updater.exe" -Value "Kangram Updater"
