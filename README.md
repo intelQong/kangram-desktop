@@ -37,7 +37,7 @@ Kangram Desktop is built upon and inspired by the incredible open-source Telegra
 
 1. **[Telegram Desktop](https://github.com/telegramdesktop/tdesktop)** — Official base desktop client and MTProto protocol implementation by Telegram FZ-LLC.
 2. **[AyuGram Desktop](https://github.com/AyuGram/AyuGramDesktop)** — Ghost mode mechanics, message filters, and anti-recall SQLite engine by @Radolyn and contributors.
-3. **[Telegraher (Graher)](https://github.com/intelQong/kangram-desktop)** — Duress passcode / KABOOM panic wipe routines, emergency drawer exit, 100 accounts expansion, and forwarding bypasses.
+3. **[Telegraher](https://github.com/nikitasius/Telegraher)** — Duress passcode / KABOOM panic wipe routines, emergency drawer exit, 100 accounts expansion, and forwarding bypasses.
 4. **[Exteragram](https://github.com/exteragram/exteragram)** — Custom profile badge layout and UI styling improvements.
 5. **[Desktop App Toolkit](https://github.com/desktop-app)** — Shared C++ libraries, styles, and UI components (`lib_ui`, `lib_base`, `lib_rpl`, `lib_crl`).
 
