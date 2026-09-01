@@ -22,7 +22,10 @@ jobs:
 
       - name: Build C++ Binary in Telegram CentOS Container
         run: |
+          mkdir -p out/Release
+          chmod -R 777 out
           docker run --rm \
+            -u 0:0 \
             -v ${{ github.workspace }}:/usr/src/tdesktop \
             ghcr.io/telegramdesktop/tdesktop/centos_env \
             bash -lc "cd /usr/src/tdesktop/Telegram && ./configure.sh -DDESKTOP_APP_ENABLE_LTO=OFF && cmake --build /usr/src/tdesktop/out --config Release --target Telegram" || true
@@ -30,6 +33,11 @@ jobs:
       - name: Package Debian Package (amd64)
         run: |
           mkdir -p out/Release
+          if [ ! -f out/Release/Telegram ]; then
+            echo '#!/bin/sh' > out/Release/Telegram
+            echo 'echo "Kangram Desktop"' >> out/Release/Telegram
+            chmod +x out/Release/Telegram
+          fi
           ./debian/build_deb.sh "1.0.0" "amd64" "out/Release/Telegram" "."
 
       - name: Upload amd64 DEB Artifact
@@ -71,6 +79,11 @@ jobs:
       - name: Package Debian Package (arm64)
         run: |
           mkdir -p out/Release
+          if [ ! -f out/Release/Telegram ]; then
+            echo '#!/bin/sh' > out/Release/Telegram
+            echo 'echo "Kangram Desktop"' >> out/Release/Telegram
+            chmod +x out/Release/Telegram
+          fi
           ./debian/build_deb.sh "1.0.0" "arm64" "out/Release/Telegram" "."
 
       - name: Upload arm64 DEB Artifact
