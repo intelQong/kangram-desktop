@@ -3,8 +3,17 @@ set -e
 
 VERSION="${1:-1.0.0}"
 ARCH="${2:-amd64}"
-BINARY_PATH="${3:-../out/Release/Telegram}"
+BINARY_PATH="${3:-out/Release/AyuGram}"
 OUTPUT_DIR="${4:-.}"
+
+if [ ! -f "$BINARY_PATH" ]; then
+    for cand in "$BINARY_PATH" "out/Release/AyuGram" "out/Release/Telegram" "out/bin/AyuGram" "out/bin/Telegram" "out/AyuGram" "out/Telegram" "../out/Release/AyuGram" "../out/Release/Telegram"; do
+        if [ -f "$cand" ]; then
+            BINARY_PATH="$cand"
+            break
+        fi
+    done
+fi
 
 if [ ! -f "$BINARY_PATH" ]; then
     echo "Error: Binary not found at $BINARY_PATH"

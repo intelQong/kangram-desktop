@@ -50,7 +50,17 @@ jobs:
 
       - name: Package Debian Package (amd64)
         run: |
-          ./debian/build_deb.sh "1.0.0" "amd64" "out/Release/Telegram" "."
+          BINARY="out/Release/AyuGram"
+          if [ ! -f "$BINARY" ]; then
+            for cand in "out/Release/Telegram" "out/AyuGram" "out/Telegram" "out/bin/AyuGram" "out/bin/Telegram"; do
+              if [ -f "$cand" ]; then
+                BINARY="$cand"
+                break
+              fi
+            done
+          fi
+          echo "Found binary at: $BINARY"
+          ./debian/build_deb.sh "1.0.0" "amd64" "$BINARY" "."
 
       - name: Upload amd64 DEB Artifact
         uses: actions/upload-artifact@v4
