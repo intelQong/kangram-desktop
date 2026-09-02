@@ -101,8 +101,14 @@ sudo dpkg -i kangram-desktop_1.0.0_amd64.deb
 ```
 
 ### Triggering Cloud Builds (GitHub Actions):
-* **Linux DEB**: [GitHub Actions Linux Workflow](https://github.com/intelQong/kangram-desktop/actions/workflows/build_linux_deb.yml)
+* **Linux DEB (amd64)**: [GitHub Actions Linux Workflow](https://github.com/intelQong/kangram-desktop/actions/workflows/build_linux_deb.yml)
+* **Linux Flatpak (arm64)**: [GitHub Actions Flatpak ARM64 Workflow](https://github.com/intelQong/kangram-desktop/actions/workflows/build_flatpak_arm64.yml)
 * **Windows EXE**: [GitHub Actions Windows Workflow](https://github.com/intelQong/kangram-desktop/actions/workflows/build_windows_exe.yml)
+
+### Installing Flatpak Bundle Locally:
+```bash
+flatpak install --user kangram-desktop-arm64.flatpak
+```
 
 ### Creating a Tagged Release:
 ```bash

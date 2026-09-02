@@ -1,0 +1,38 @@
+name: Build Kangram Flatpak (ARM64)
+
+on:
+  push:
+    branches: [ main, dev ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-flatpak-arm64:
+    name: Build Kangram Flatpak ARM64
+    runs-on: ubuntu-24.04-arm
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-50
+      options: --privileged
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Build Flatpak Bundle
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          manifest-path: flatpak/org.kangram.desktop.yml
+          bundle: kangram-desktop-arm64.flatpak
+          cache: true
+          branch: master
+
+      - name: Upload Flatpak Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kangram-desktop-arm64.flatpak
+          path: kangram-desktop-arm64.flatpak

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+    <id>org.kangram.desktop</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0</project_license>
+    <name>Kangram Desktop</name>
+    <summary>Privacy and control oriented desktop messaging client</summary>
+    <description>
+        <p>Kangram Desktop is a privacy and control oriented desktop client for Telegram with anti-recall message history, ghost mode, restriction bypasses, duress wipe (KABOOM), and 100+ account support.</p>
+    </description>
+    <categories>
+        <category>Network</category>
+        <category>InstantMessaging</category>
+        <category>Chat</category>
+    </categories>
+    <developer_name>Kangram</developer_name>
+    <url type="homepage">https://github.com/intelQong/kangram-desktop</url>
+    <url type="bugtracker">https://github.com/intelQong/kangram-desktop/issues</url>
+    <keywords>
+        <keyword>tg</keyword>
+        <keyword>telegram</keyword>
+        <keyword>tdesktop</keyword>
+        <keyword>messaging</keyword>
+        <keyword>messenger</keyword>
+        <keyword>chat</keyword>
+        <keyword>kangram</keyword>
+    </keywords>
+    <requires>
+        <display_length compare="ge">medium</display_length>
+        <internet>always</internet>
+    </requires>
+    <supports>
+        <control>pointing</control>
+        <control>keyboard</control>
+        <control>touch</control>
+    </supports>
+    <launchable type="desktop-id">org.kangram.desktop.desktop</launchable>
+    <provides>
+        <binary>Telegram</binary>
+    </provides>
+</component>
