@@ -28,6 +28,7 @@ jobs:
         with:
           manifest-path: flatpak/org.kangram.desktop.yml
           bundle: kangram-desktop-arm64.flatpak
+          arch: aarch64
           cache: true
           branch: master
 
