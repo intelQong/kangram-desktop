@@ -49,7 +49,7 @@ Kangram Desktop restores **total local control, sovereignty, and privacy** to th
 │   │   └── art/kangram.png       # Core application branding asset
 │   ├── SourceFiles/
 │   │   ├── core/
-│   │   │   └── version.h         # AppName = "Kangram Desktop", AppFile = "Kangram", Version 1.0.0
+│   │   │   └── version.h         # AppName = "Kangram Desktop", AppFile = "Kangram", Version 1.0.1
 │   │   ├── ayu/                  # Kangram / Ayu custom subsystem
 │   │   │   ├── ayu_settings.h    # Settings state, duress methods & panic wipe
 │   │   │   ├── ayu_settings.cpp  # JSON persistence and panic execution
@@ -96,8 +96,8 @@ Kangram Desktop restores **total local control, sovereignty, and privacy** to th
 
 ### Packaging Debian (`.deb`) Locally:
 ```bash
-./debian/build_deb.sh "1.0.0" "amd64" "out/Release/Telegram" "."
-sudo dpkg -i kangram-desktop_1.0.0_amd64.deb
+./debian/build_deb.sh "1.0.1" "amd64" "out/Release/Telegram" "."
+sudo dpkg -i kangram-desktop_1.0.1_amd64.deb
 ```
 
 ### Triggering Cloud Builds (GitHub Actions):
@@ -112,7 +112,7 @@ flatpak install --user kangram-desktop-arm64.flatpak
 
 ### Creating a Tagged Release:
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+git tag v1.0.1
+git push origin v1.0.1
 ```
 This triggers `.github/workflows/release.yml` which compiles and publishes `.deb` and `.exe` assets directly to GitHub Releases.

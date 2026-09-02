@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-VERSION="${1:-1.0.0}"
+VERSION="${1:-1.0.1}"
 ARCH="${2:-amd64}"
 BINARY_PATH="${3:-out/Release/AyuGram}"
 OUTPUT_DIR="${4:-.}"

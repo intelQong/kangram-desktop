@@ -60,10 +60,10 @@ jobs:
             done
           fi
           echo "Found binary at: $BINARY"
-          ./debian/build_deb.sh "1.0.0" "amd64" "$BINARY" "."
+          ./debian/build_deb.sh "1.0.1" "amd64" "$BINARY" "."
 
       - name: Upload amd64 DEB Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: kangram-desktop_1.0.0_amd64.deb
-          path: kangram-desktop_1.0.0_amd64.deb
+          name: kangram-desktop_1.0.1_amd64.deb
+          path: kangram-desktop_1.0.1_amd64.deb

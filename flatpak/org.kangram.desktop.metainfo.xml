@@ -35,7 +35,11 @@
         <control>touch</control>
     </supports>
     <launchable type="desktop-id">org.kangram.desktop.desktop</launchable>
-    <provides>
-        <binary>Telegram</binary>
-    </provides>
+    <releases>
+        <release version="1.0.1" date="2026-09-02">
+            <description>
+                <p>Initial release with Kangram modded preferences, duress panic protection, and multi-architecture build pipelines.</p>
+            </description>
+        </release>
+    </releases>
 </component>
