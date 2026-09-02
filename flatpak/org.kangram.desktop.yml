@@ -340,5 +340,9 @@ modules:
   sources:
   - type: dir
     path: ..
+  - type: shell
+    commands:
+    - printf 'add_library(external_cld3 INTERFACE IMPORTED GLOBAL)\nadd_library(desktop-app::external_cld3 ALIAS external_cld3)\n' > cmake/external/cld3/CMakeLists.txt
+    - printf '#include "spellcheck/third_party/language_cld3.h"\n\nnamespace Platform::Language {\n\nLanguageId Recognize(QStringView text) {\n    return {};\n}\n\n} // namespace Platform::Language\n' > Telegram/lib_spellcheck/spellcheck/third_party/language_cld3.cpp
   cleanup:
   - /share/icons/hicolor/512x512@2

@@ -23,12 +23,31 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Disable unused CLD3 CMake dependency
+        run: |
+          cat << 'EOF' > cmake/external/cld3/CMakeLists.txt
+          add_library(external_cld3 INTERFACE IMPORTED GLOBAL)
+          add_library(desktop-app::external_cld3 ALIAS external_cld3)
+          EOF
+          cat << 'EOF' > Telegram/lib_spellcheck/spellcheck/third_party/language_cld3.cpp
+          #include "spellcheck/third_party/language_cld3.h"
+
+          namespace Platform::Language {
+
+          LanguageId Recognize(QStringView text) {
+              return {};
+          }
+
+          } // namespace Platform::Language
+          EOF
+
       - name: Build Flatpak Bundle
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           manifest-path: flatpak/org.kangram.desktop.yml
           bundle: kangram-desktop-arm64.flatpak
           arch: aarch64
+          upload-artifact: false
           cache: true
           branch: master
 
