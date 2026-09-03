@@ -13,7 +13,7 @@
         <category>InstantMessaging</category>
         <category>Chat</category>
     </categories>
-    <developer_name>Kangram</developer_name>
+    <developer id="org.kangram"><name>Kangram</name></developer>
     <url type="homepage">https://github.com/intelQong/kangram-desktop</url>
     <url type="bugtracker">https://github.com/intelQong/kangram-desktop/issues</url>
     <keywords>
@@ -26,7 +26,7 @@
         <keyword>kangram</keyword>
     </keywords>
     <requires>
-        <display_length compare="ge">medium</display_length>
+        <display_length compare="ge">480</display_length>
         <internet>always</internet>
     </requires>
     <supports>
@@ -34,6 +34,7 @@
         <control>keyboard</control>
         <control>touch</control>
     </supports>
+    <content_rating type="oars-1.1" />
     <launchable type="desktop-id">org.kangram.desktop.desktop</launchable>
     <releases>
         <release version="1.0.1" date="2026-09-02">

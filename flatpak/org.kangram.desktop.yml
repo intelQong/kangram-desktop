@@ -333,10 +333,24 @@ modules:
   - -DTDESKTOP_API_HASH=b18441a1ff607e10a989891a5462e627
   - -DDESKTOP_APP_ENABLE_LTO=OFF
   post-install:
-  - install -Dm644 flatpak/org.kangram.desktop.desktop ${FLATPAK_DEST}/share/applications/org.kangram.desktop.desktop
-  - install -Dm644 debian/kangram.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/org.kangram.desktop.png
-  - install -Dm644 flatpak/org.kangram.desktop.metainfo.xml ${FLATPAK_DEST}/share/metainfo/org.kangram.desktop.metainfo.xml
-  - rm -f ${FLATPAK_DEST}/share/applications/com.ayugram.desktop.desktop ${FLATPAK_DEST}/share/metainfo/com.ayugram.desktop.metainfo.xml
+  - |
+    for dir in . .. ../..; do
+      if [ -f "$dir/flatpak/org.kangram.desktop.desktop" ]; then
+        SRC_DIR="$dir"
+        break
+      fi
+    done
+    install -Dm644 "$SRC_DIR/flatpak/org.kangram.desktop.desktop" "${FLATPAK_DEST}/share/applications/org.kangram.desktop.desktop"
+    install -Dm644 "$SRC_DIR/debian/kangram.png" "${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/org.kangram.desktop.png"
+    install -Dm644 "$SRC_DIR/flatpak/org.kangram.desktop.metainfo.xml" "${FLATPAK_DEST}/share/metainfo/org.kangram.desktop.metainfo.xml"
+    rm -f "${FLATPAK_DEST}/share/applications/com.ayugram.desktop.desktop"
+    rm -f "${FLATPAK_DEST}/share/metainfo/com.ayugram.desktop.metainfo.xml"
+    rm -f "${FLATPAK_DEST}/share/dbus-1/services/com.ayugram.desktop.service"
+    mkdir -p "${FLATPAK_DEST}/share/dbus-1/services"
+    printf '[D-BUS Service]\nName=org.kangram.desktop\nExec=/app/bin/Telegram -- %%u\n' > "${FLATPAK_DEST}/share/dbus-1/services/org.kangram.desktop.service"
+    if [ -f "${FLATPAK_DEST}/bin/AyuGram" ] && [ ! -f "${FLATPAK_DEST}/bin/Telegram" ]; then
+      ln -sf AyuGram "${FLATPAK_DEST}/bin/Telegram"
+    fi
   sources:
   - type: dir
     path: ..
