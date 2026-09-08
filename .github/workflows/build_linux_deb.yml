@@ -60,24 +60,24 @@ jobs:
             done
           fi
           echo "Found binary at: $BINARY"
-          ./debian/build_deb.sh "1.0.1" "amd64" "$BINARY" "."
-          ./scripts/build_appimage.sh "1.0.1" "amd64" "$BINARY" "."
-          ./scripts/build_portable.sh "1.0.1" "amd64" "$BINARY" "."
+          ./debian/build_deb.sh "7.0.9" "amd64" "$BINARY" "."
+          ./scripts/build_appimage.sh "7.0.9" "amd64" "$BINARY" "."
+          ./scripts/build_portable.sh "7.0.9" "amd64" "$BINARY" "."
 
       - name: Upload amd64 DEB Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: kangram-desktop_1.0.1_amd64.deb
-          path: kangram-desktop_1.0.1_amd64.deb
+          name: kangram-desktop_7.0.9_amd64.deb
+          path: kangram-desktop_7.0.9_amd64.deb
 
       - name: Upload amd64 AppImage Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Kangram-1.0.1-x86_64.AppImage
-          path: Kangram-1.0.1-x86_64.AppImage
+          name: Kangram-7.0.9-x86_64.AppImage
+          path: Kangram-7.0.9-x86_64.AppImage
 
       - name: Upload amd64 Portable Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Kangram-Portable-1.0.1-x86_64.tar.xz
-          path: Kangram-Portable-1.0.1-x86_64.tar.xz
+          name: Kangram-Portable-7.0.9-x86_64.tar.xz
+          path: Kangram-Portable-7.0.9-x86_64.tar.xz

@@ -49,7 +49,7 @@ Kangram Desktop restores **total local control, sovereignty, and privacy** to th
 │   │   └── art/kangram.png       # Core application branding asset
 │   ├── SourceFiles/
 │   │   ├── core/
-│   │   │   └── version.h         # AppName = "Kangram Desktop", AppFile = "Kangram", Version 1.0.1
+│   │   │   └── version.h         # AppName = "Kangram Desktop", AppFile = "Kangram", Version 7.0.9
 │   │   ├── ayu/                  # Kangram / Ayu custom subsystem
 │   │   │   ├── ayu_settings.h    # Settings state, duress methods & panic wipe
 │   │   │   ├── ayu_settings.cpp  # JSON persistence and panic execution
@@ -96,20 +96,20 @@ Kangram Desktop restores **total local control, sovereignty, and privacy** to th
 
 ### Packaging Debian (`.deb`) Locally:
 ```bash
-./debian/build_deb.sh "1.0.1" "amd64" "out/Release/Telegram" "."
-sudo dpkg -i kangram-desktop_1.0.1_amd64.deb
+./debian/build_deb.sh "7.0.9" "amd64" "out/Release/Telegram" "."
+sudo dpkg -i kangram-desktop_7.0.9_amd64.deb
 ```
 
 ### Packaging AppImage Locally:
 ```bash
-./scripts/build_appimage.sh "1.0.1" "arm64" "out/Release/Telegram" "."
-./scripts/build_appimage.sh "1.0.1" "x86_64" "out/Release/Telegram" "."
+./scripts/build_appimage.sh "7.0.9" "arm64" "out/Release/Telegram" "."
+./scripts/build_appimage.sh "7.0.9" "x86_64" "out/Release/Telegram" "."
 ```
 
 ### Packaging Portable Tarball (`.tar.xz`) Locally:
 ```bash
-./scripts/build_portable.sh "1.0.1" "arm64" "out/Release/Telegram" "."
-./scripts/build_portable.sh "1.0.1" "x86_64" "out/Release/Telegram" "."
+./scripts/build_portable.sh "7.0.9" "arm64" "out/Release/Telegram" "."
+./scripts/build_portable.sh "7.0.9" "x86_64" "out/Release/Telegram" "."
 ```
 
 ### Triggering Cloud Builds (GitHub Actions):
@@ -124,7 +124,7 @@ flatpak install --user kangram-desktop-arm64.flatpak
 
 ### Creating a Tagged Release:
 ```bash
-git tag v1.0.1
-git push origin v1.0.1
+git tag v7.0.9
+git push origin v7.0.9
 ```
 This triggers `.github/workflows/release.yml` which compiles and publishes `.deb` and `.exe` assets directly to GitHub Releases.

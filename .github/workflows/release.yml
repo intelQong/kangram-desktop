@@ -20,7 +20,7 @@ jobs:
       - name: Build DEB, AppImage, and Portable Packages
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          [ -z "$VERSION" ] && VERSION="1.0.1"
+          [ -z "$VERSION" ] && VERSION="7.0.9"
           mkdir -p out/Release
           if [ ! -f out/Release/Telegram ]; then
             echo '#!/bin/sh' > out/Release/Telegram

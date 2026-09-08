@@ -22,8 +22,8 @@ Privacy and control oriented Telegram Desktop fork with Anti-Recall, Duress Pani
 ### Linux (.deb Package)
 To package a `.deb` package on Debian / Ubuntu:
 ```bash
-./debian/build_deb.sh "1.0.1" "amd64" "out/Release/Telegram" "."
-sudo dpkg -i kangram-desktop_1.0.1_amd64.deb
+./debian/build_deb.sh "7.0.9" "amd64" "out/Release/Telegram" "."
+sudo dpkg -i kangram-desktop_7.0.9_amd64.deb
 ```
 
 ### Windows (.exe Installer & Portable)

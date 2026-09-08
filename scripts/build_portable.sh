@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-VERSION="${1:-1.0.1}"
+VERSION="${1:-7.0.9}"
 ARCH="${2:-amd64}"
 BINARY_PATH="${3:-out/Release/Kangram}"
 OUTPUT_DIR="${4:-.}"
