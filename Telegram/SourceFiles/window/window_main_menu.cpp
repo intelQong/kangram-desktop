@@ -842,6 +842,13 @@ void MainMenu::setupMenu() {
 		controller->showSettings();
 	});
 
+	addAction(
+		tr::ayu_AyuPreferences(),
+		{ &st::menuIconPremium }
+	)->setClickedCallback([=] {
+		controller->showSettings(Settings::AyuMain::Id());
+	});
+
 	if (settings.showNightModeToggleInDrawer()) {
 
 	_nightThemeToggle = addAction(

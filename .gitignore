@@ -75,3 +75,11 @@ settings.local.json
 
 # Project specific
 Telegram/SourceFiles/_other/packer_private.h
+
+# Local build packages and staging dirs
+*.deb
+*.AppImage
+*.tar.xz
+*.flatpak
+Kangram-Portable-*/
+kangram-desktop-*/

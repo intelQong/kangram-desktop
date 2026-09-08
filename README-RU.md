@@ -1,6 +1,6 @@
-# AyuGram
+# Kangram
 
-![AyuGram Лого](.github/AyuGram.png) ![AyuChan](.github/AyuChan.png)
+![Kangram Лого](.github/AyuGram.png) ![AyuChan](.github/AyuChan.png)
 
 [ [English](README.md)  | Русский ]
 
@@ -23,7 +23,7 @@
     <table>
       <tr>
         <td><img src='.github/demos/demo1.png' width='268' alt='Preferences'></td>
-        <td><img src='.github/demos/demo2.png' width='268' alt='AyuGram Options'></td>
+        <td><img src='.github/demos/demo2.png' width='268' alt='Kangram Options'></td>
         <td><img src='.github/demos/demo3.png' width='268' alt='Message Filters'></td>
       </tr>
       <tr>
@@ -59,7 +59,7 @@ scoop install ayugram
 #### Сборка вручную
 
 Следуйте [официальному руководству](https://github.com/AyuGram/AyuGramDesktop/blob/dev/docs/building-win-x64.md), если
-вы хотите собрать AyuGram сами.
+вы хотите собрать Kangram сами.
 
 ### macOS
 
@@ -126,7 +126,7 @@ Flatpak: https://github.com/0FL01/AyuGramDesktop-flatpak
 
 ## Пожертвования
 
-Вам нравится использовать **AyuGram**? Оставьте нам чаевые!
+Вам нравится использовать **Kangram**? Оставьте нам чаевые!
 
 [Здесь доступные варианты.](https://docs.ayugram.one/donate/)
 

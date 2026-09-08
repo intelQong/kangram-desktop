@@ -100,6 +100,18 @@ Kangram Desktop restores **total local control, sovereignty, and privacy** to th
 sudo dpkg -i kangram-desktop_1.0.1_amd64.deb
 ```
 
+### Packaging AppImage Locally:
+```bash
+./scripts/build_appimage.sh "1.0.1" "arm64" "out/Release/Telegram" "."
+./scripts/build_appimage.sh "1.0.1" "x86_64" "out/Release/Telegram" "."
+```
+
+### Packaging Portable Tarball (`.tar.xz`) Locally:
+```bash
+./scripts/build_portable.sh "1.0.1" "arm64" "out/Release/Telegram" "."
+./scripts/build_portable.sh "1.0.1" "x86_64" "out/Release/Telegram" "."
+```
+
 ### Triggering Cloud Builds (GitHub Actions):
 * **Linux DEB (amd64)**: [GitHub Actions Linux Workflow](https://github.com/intelQong/kangram-desktop/actions/workflows/build_linux_deb.yml)
 * **Linux Flatpak (arm64)**: [GitHub Actions Flatpak ARM64 Workflow](https://github.com/intelQong/kangram-desktop/actions/workflows/build_flatpak_arm64.yml)

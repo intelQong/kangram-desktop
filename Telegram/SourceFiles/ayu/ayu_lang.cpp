@@ -179,7 +179,11 @@ void AyuLanguage::applyLanguageJson(QJsonDocument doc) {
 	const auto json = doc.object();
 	for (const QString &brokenKey : json.keys()) {
 		auto key = qsl("ayu_") + brokenKey;
-		auto val = json.value(brokenKey).toString().replace(qsl("&amp;"), qsl("&"));
+		auto val = json.value(brokenKey).toString()
+			.replace(qsl("&amp;"), qsl("&"))
+			.replace(qsl("AyuGram"), qsl("Kangram"))
+			.replace(qsl("Ayugram"), qsl("Kangram"))
+			.replace(qsl("ayugram"), qsl("kangram"));
 
 		if (key.endsWith("_Android")) {
 			continue;

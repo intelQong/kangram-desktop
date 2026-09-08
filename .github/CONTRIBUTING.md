@@ -1,6 +1,6 @@
 # Contributing
 
-This document describes how you can contribute to AyuGram Desktop.
+This document describes how you can contribute to Kangram Desktop.
 
 **Table of Contents**
 
@@ -17,7 +17,7 @@ This document describes how you can contribute to AyuGram Desktop.
 
 ## What contributions are accepted
 
-We highly appreciate your contributions in the matter of fixing bugs and optimizing the AyuGram Desktop source code and its documentation. In case of fixing the existing user experience please push to your fork and [submit a pull request][pr].
+We highly appreciate your contributions in the matter of fixing bugs and optimizing the Kangram Desktop source code and its documentation. In case of fixing the existing user experience please push to your fork and [submit a pull request][pr].
 
 If you have a translations-related contribution, check out [our Crowdin][translate].
 
@@ -53,7 +53,7 @@ For more info, see [GitHub Help][help_fork_repo].
 
 ## How to get your pull request accepted
 
-We want to improve AyuGram Desktop with your contributions. But we also want to provide a stable experience for our users and the community. Follow these rules and you should succeed without a problem!
+We want to improve Kangram Desktop with your contributions. But we also want to provide a stable experience for our users and the community. Follow these rules and you should succeed without a problem!
 
 ### Keep your pull requests limited to a single issue
 

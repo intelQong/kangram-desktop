@@ -348,7 +348,9 @@ modules:
     rm -f "${FLATPAK_DEST}/share/dbus-1/services/com.ayugram.desktop.service"
     mkdir -p "${FLATPAK_DEST}/share/dbus-1/services"
     printf '[D-BUS Service]\nName=org.kangram.desktop\nExec=/app/bin/Telegram -- %%u\n' > "${FLATPAK_DEST}/share/dbus-1/services/org.kangram.desktop.service"
-    if [ -f "${FLATPAK_DEST}/bin/AyuGram" ] && [ ! -f "${FLATPAK_DEST}/bin/Telegram" ]; then
+    if [ -f "${FLATPAK_DEST}/bin/Kangram" ] && [ ! -f "${FLATPAK_DEST}/bin/Telegram" ]; then
+      ln -sf Kangram "${FLATPAK_DEST}/bin/Telegram"
+    elif [ -f "${FLATPAK_DEST}/bin/AyuGram" ] && [ ! -f "${FLATPAK_DEST}/bin/Telegram" ]; then
       ln -sf AyuGram "${FLATPAK_DEST}/bin/Telegram"
     fi
   sources:

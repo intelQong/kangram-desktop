@@ -1843,7 +1843,19 @@ const std::vector<LocalUrlHandler> &LocalUrlHandlers() {
 			AyuUrlHandlers::HandleAyuSettings
 		},
 		{
+			u"^kangramsettings/?\\?(.+)(#|$)"_q,
+			AyuUrlHandlers::HandleAyuSettings
+		},
+		{
+			u"^kangramsettings/?$"_q,
+			AyuUrlHandlers::HandleAyuSettings
+		},
+		{
 			u"^ayu(/?.+)?(#|$)"_q,
+			AyuUrlHandlers::HandleAyu
+		},
+		{
+			u"^kangram(/?.+)?(#|$)"_q,
 			AyuUrlHandlers::HandleAyu
 		},
 		{
